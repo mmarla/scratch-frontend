@@ -3,8 +3,10 @@ import { Link, useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { Auth } from "aws-amplify";
+
 import Routes from "./Routes";
 import { AppContext } from "./libs/context";
+import { onError } from "./libs/errors";
 
 import "./App.css";
 
@@ -23,7 +25,7 @@ function App() {
       userHasAuthenticated(true);
     } catch (e) {
       if (e !== "No current user") {
-        alert(e);
+        onError(e);
       }
     }
 
