@@ -5,13 +5,12 @@ import { Nav, Navbar } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 
 import Routes from "./Routes";
-import { AppContext, useAppContext } from "./libs/context";
+import { AppContext } from "./libs/context";
 import { onError } from "./libs/errors";
 
 import "./App.css";
 
 function App() {
-  // const { userHasAuthenticated } = useAppContext();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const history = useHistory();
