@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 
 import Routes from "./Routes";
-import { AppContext } from "./libs/context";
+import { AppContext, useAppContext } from "./libs/context";
 import { onError } from "./libs/errors";
 
 import "./App.css";
 
 function App() {
+  // const { userHasAuthenticated } = useAppContext();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const history = useHistory();
@@ -41,25 +42,25 @@ function App() {
 
   return (
     !isAuthenticating && (
-      <div className="App container">
-        <Navbar fluid collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/">Scratch</Link>
+      <div className="App container py-3">
+        <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
+          <LinkContainer to="/">
+            <Navbar.Brand className="font-weight-bold text-muted">
+              Scratch
             </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
+          </LinkContainer>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            <Nav activeKey={window.location.pathname}>
               {isAuthenticated ? (
-                <NavItem onClick={handleLogout}>Logout</NavItem>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               ) : (
                 <>
                   <LinkContainer to="/signup">
-                    <NavItem>Signup</NavItem>
+                    <Nav.Link>Signup</Nav.Link>
                   </LinkContainer>
                   <LinkContainer to="/login">
-                    <NavItem>Login</NavItem>
+                    <Nav.Link>Login</Nav.Link>
                   </LinkContainer>
                 </>
               )}

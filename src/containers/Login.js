@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 import { useAppContext } from "../libs/context";
@@ -41,23 +41,23 @@ export default function Login() {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
+        <Form.Group controlId="email" bssize="large">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             autoFocus
             type="email"
             value={fields.email}
             onChange={handleFieldChange}
           />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
+        </Form.Group>
+        <Form.Group controlId="password" bssize="large">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             value={fields.password}
             onChange={handleFieldChange}
             type="password"
           />
-        </FormGroup>
+        </Form.Group>
         <LoaderButton
           block
           size="lg"
