@@ -1,4 +1,4 @@
-export default {
+const config = {
   s3: {
     REGION: "eu-west-2",
     BUCKET: "notes.me",
@@ -14,3 +14,5 @@ export default {
     IDENTITY_POOL_ID: "eu-west-2:f01b0365-6f53-4dce-b303-66f0b3fdb3ed",
   },
 };
+
+export default config;
